@@ -1,2 +1,1 @@
-# STAT462-developer
-Advance labs
+The internal lab book for STAT-462:003.
