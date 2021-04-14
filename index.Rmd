@@ -10,7 +10,7 @@ link-citations: yes
 description: "Lab Book for STAT-462 2021"
 ---
 
-# Tutorials
+# Tutorials {#S.Tutorial}
 
 ```{r, echo=FALSE,message=FALSE,warning=FALSE}
 
@@ -32,16 +32,21 @@ library("MASS")      # Regression specific commands
 library("corrplot")  # correlation plots
 library("car")       # this one sometimes has problems, don't panic if you get errors
 library("ggpubr")    # QQplots
+library("equatiomatic")
+library("readxl") # read excel
+library("GGally") # read excel
+library("plotly") # read excel
+
 ```
 
-## Tutorial 1A: Installing R and R-studio
+## Tutorial 1A: Installing R and R-studio {#S.Tutorial.1A}
 
 In this class, we would like you to download and install BOTH R and R-Studio onto your own computers.  You should have already completed this step for Homework 1.  If you have not, see instructions here: https://psu.instructure.com/courses/2115020/assignments/12682456 
 
 FOR WINDOWS USERS.  Sometimes R asks you to download something called RTools.  You can do so here: https://cran.r-project.org/bin/windows/Rtools/  Follow the instructions closely and ask if you need support.
 
 
-### Open R-studio
+### Open R-studio {#S.Tutorial.1A.1}
 
 ```{r, rrstudiot, echo=FALSE, fig.cap = "Icons of the R program and R-studio"}
 knitr::include_graphics('images/Fig_01_01RRStudio.png')
@@ -63,7 +68,7 @@ If you wish to learn more about what these windows do, have a look at this resou
 
 **If you have used R before, you might see that there are variables and plots etc already loaded**.  It is always good to clear these before you start a new analysis.  To do this, click the little broom symbol in your environment tab.
 
-### Change a few settings
+### Change a few settings {#S.Tutorial.1A.2}
 
 R-studio wants to be helpful and will try to re-load exactly where you were in a project when you log back in.  This can get really confusing, so we are going to turn this off.
 
@@ -76,9 +81,9 @@ Now:
  - UNCLICK "Restore most recently opened project at startup"
  - Set "Save workspace to .RData on" exit to Never
 
-## Tutorial 1B: Creating and loading R projects
+## Tutorial 1B: Creating and loading R projects {#S.Tutorial.1B}
 
-### What are projects?
+### What are projects? {#S.Tutorial.1B.1}
 
 [![Rproject2](images/Fig_01_03VIDEO_Projects.png)](https://www.linkedin.com/learning/learning-the-r-tidyverse/why-should-you-use-projects-in-rstudio?u=76811570 "Why use R Projects")
 
@@ -122,7 +127,7 @@ In the future, every time you want to work on Lab 1, rather than open R-studio d
  
 ##### If you're having issues at this point or haven't managed to get to this step, STOP!  Ask an instructor for help. {-}
 
-Now you have opened your project, take a screenshot of your R-studio page. It should look like the figure above, e.g. with at least R version 4.0.3, with the Lab 1 project and the project stored in your STAT-462 folder.
+Now you have opened your project, take a screenshot of your R-studio page. It should look like Figure \@ref(fig:finaloutt), e.g. with at least R version 4.0.3, with the Lab 1 project and the project stored in your STAT-462 folder.
 
  - To take a screenshot on a mac, press Command-3.  The screenshot will appear on your desktop
  - To take a screenshot on a PC, press Alt + PrtScn  
@@ -132,15 +137,15 @@ Rename the screenshot to your "username_Lab1_Fig1"(for example for me it will be
 You will need this later, so don't skip this step.
 
 
-## Tutorial 1C: R coding basics
+## Tutorial 1C: R coding basics {#S.Tutorial.1C}
 
 [![Rbasics](images/Fig_01_07VIDEO_Basics.png)](https://youtu.be/SWxoJqTqo08?t=41 "R basics")
 
 So now we FINALLY get to do some R-coding.  First things first, first watch the 5 min video above for some pointers.  Will will also go through this below:
 
-#### Using R as a calculator
+### Using R as a calculator {#S.Tutorial.1C.1}
 
-Remember that the aim of R is to type in commands to get your computer to analyse data.   The console (see Figure \@ref(fig:basicStudio)) is a space where you can type in those commands and it will directly print out the answer. You're essentially talking to the computer.  
+Remember that the aim of R is to type in commands to get your computer to analyse data.   The console (see Figure \@ref(fig:basicStudiot)) is a space where you can type in those commands and it will directly print out the answer. You're essentially talking to the computer.  
 
 The little ">" symbol in the console means that the computer is waiting for your command.
 
@@ -164,7 +169,7 @@ will give a different result to
 (3 + 5) * 2
 ```
 
-#### Adding text
+### Adding text {#S.Tutorial.1C.2}
 
 Now for text. Can you say hello world?
 
@@ -177,7 +182,7 @@ Nope, there is an error!  To make R understand text, it is important to use quot
 print("Hello World")
 ```
 
-#### Comparisons
+### Comparisons {#S.Tutorial.1C.3}
 
 We can also do comparisons in R - using the special symbols TRUE or FALSE (no quote marks, they are special). 
 
@@ -197,7 +202,7 @@ We could also have used
  - `>=` "Greater than or equal to"
 
 
-#### What if I press Enter too soon? {-}
+### What if I press Enter too soon? {#S.Tutorial.1C.4}
 
 If you type in an incomplete command, R will wait for you to complete it.  For example, if you type
 `1 +` and press enter, R will know that you need to complete the command  So it will move onto the next line but the `>` will have changed into a `+`, which means its waiting for you to complete the command.  
@@ -207,7 +212,7 @@ If you type in an incomplete command, R will wait for you to complete it.  For e
 Pressing escape isn’t only useful for killing incomplete commands: you can also use it to tell R to stop running code (for example if it’s taking much longer than you expect), or to get rid of the code you’re currently writing.
 
 
-### Variables and assignment
+### Variables and assignment {#S.Tutorial.1C.5}
 
 It's great to be able to do maths easily on the screen, but really we want to be able to save our results, or load in data so we can run more complex commands.   In R, we can give our data a name e.g. we save our data as a variable.  So then, instead of typing the whole command, we can simply type the variable's name and R will recall the answer.
 
@@ -262,7 +267,7 @@ ans <- h+H
 print(ans)
 ```
 
-##### Combining variables {-}
+#### Combining variables {#S.Tutorial.1C.6}
 
 As I showed above, you can now use multiple variables together in more complex commands. For example, try these commands:
 
@@ -288,7 +293,7 @@ x          # print the contents of "x" onto the screen
 
 Our variables don't have to be numbers. They could refer to tables of data, or a spatial map, or any other complex thing.  We will cover this more in future labs.
 
-### Functions
+### Functions {#S.Tutorial.1C.7}
 
 A command is simply an action you can take - like pressing the square root button on a calculator, followed by the number you wish to take the square root of.  A command is *always* followed by parentheses ( ), inside which you put your arguments. 
 
@@ -340,7 +345,7 @@ If you are feeling lost, https://swcarpentry.github.io/r-novice-gapminder/01-rst
 is a really good website which goes over a lot of this in more detail.  A lot of this is based on their work.
 
 
-## Tutorial 1D: Packages
+## Tutorial 1D: Packages {#S.Tutorial.1D}
 
 There are now several million commands/functions available for you to use in R.  To make sure your computer doesn't get overwhelmed, it doesn't load all of these at once. In fact many need to be downloaded from the internet. 
 
@@ -430,9 +435,9 @@ knitr::include_graphics('images/Fig_1_15Tidyverse.png')
 
 Note - you don't need to submit anything for lab challenge 2 - it's here to make the rest of the semester run smoothly. Your only action is to reach out if there are errors.
 
-## Tutorial 1E: R Markdown basics
+## Tutorial 1E: R Markdown basics {#S.Tutorial.1E}
 
-### What is R-markdown?
+### What is R-markdown? {#S.Tutorial.1E.1}
 
 So far, we've been typing commands into the console, but these will all be lost once you close R. Equally, it's hard to remember or reproduce the analysis you have done . So we will now move onto writing code commands that you can save and submit.
 
@@ -444,7 +449,7 @@ There are several types of document that you can create and save in R-Studio.
  
 In this course we are going to focus on the R-Markdown format and you are going to submit your labs as html files.  
 
-### Creating a markdown document
+### Creating a markdown document {#S.Tutorial.1E.2}
 
 Time to make your own. Go to the File menu on the top left, then click New File - R-Markdown. It will ask you to name and save your file.  Call it STAT-462 Lab 1.
 
@@ -473,7 +478,7 @@ Now click at the end of the script, around line 20 and press the green insert bu
 It will first ask you to save. Save it as STAT462_Lab1_PSU.ID   e.g. STAT462_Lab1_hlg5155. Then, this should make a new file pop-up, a html pretty version of your code and output.   If you go to your lab 1 folder, you will see that this has appeared next to your .Rmd file.
 
 
-### "Friendly text" {#friend}
+### "Friendly text" {#S.Tutorial.1E.3}
 
 Much of what you see on your screen when you open a notebook document is simply a friendly introduction to RStudio.
 
@@ -488,11 +493,11 @@ knitr::include_graphics('images/Fig_01_10Friendlytext.png')
 
 
 
-## Tutorial 2A: Getting help in R
+## Tutorial 2A: Getting help in R {#S.Tutorial.2A}
 
 There are going to be many occasions when either you are not sure what to do in R or something is not working. Here are some of the places I get help:
   
-### Help on a specific command
+### Help on a specific command {#S.Tutorial.2A.1}
 
 You can type `?function_name` into the console where [name] is the CASE SENSITIVE name of the command.  For example, you can find help on the boxplot command by typing `?boxplot` or `help(boxplot)`.  
 
@@ -505,7 +510,7 @@ You can type `?function_name` into the console where [name] is the CASE SENSITIV
 If you're *sure* you typed the name correct but it can't find the help-file, then you probably first need to load the package containing the command.  For example `?ggqqplot` will not work before you use `library("ggpubr")` to load the `ggpubr` package. 
  
  
-### Finding a command name
+### Finding a command name {#S.Tutorial.2A.2}
 
 Let's say that you want to run a Wilks Shapiro test but you cannot remember what the command is called. In the console try typing `??"search_text"` or `help.search("search_text")` e.g. try `??"shapiro"` or `help.search("shapiro")`.
 
@@ -521,7 +526,7 @@ You can see that there are a three commands I can choose from (I might have more
 
 Remember to actually use any command in R, you first need to load the relevant package. For example,  if I wanted to use the nortest version of sf.test, then I would first need to include the command `library(nortest)` in order for it to be available.
 
-### Asking the internet: 
+### Asking the internet: {#S.Tutorial.2A.3}
 
 ```{r, xkcdt, echo=FALSE,fig.cap="This may be a cartoon but it's genuinely how I debug my code!"}
 knitr::include_graphics('images/Fig_02_02XKCD.png')
@@ -535,7 +540,7 @@ When asking for help, typing the command `sessionInfo()` into the console will p
 
 You also always have lab sessions to ask questions or the discussion boards at any time.
 
-### General help & cheatsheets 
+### General help & cheatsheets {#S.Tutorial.2A.4}
 
 Within R, try running `help.start()` in the console (remember to include the empty parentheses or R won't realise it's a command).  This brings up all the manuals R has available on your computer.  An introduction to R is particularly useful. Click on it and have a look around.
 
@@ -548,14 +553,14 @@ There are also some really good cheat-sheets out there:
   - A nice markdown summary - https://ourcodingclub.github.io/tutorials/rmarkdown/ with answers to things like preview vs knit. 
  
 
-## Tutorial 2B: Markdown formats
+## Tutorial 2B: Markdown formats {#S.Tutorial.2B}
 
 The aim of this tutorial is to make your markdown reports more professional and easy to read. In future weeks we will continue to expand this work so that by the end of the course, you can make highly professional interactive reports.  For example, [click here](https://rmarkdown.rstudio.com/formats.html) for all the types of document you could easily turn your report into. 
 
 
-### Editing YAML code
+### Editing YAML code {#S.Tutorial.2B.1}
 
-This is the code at the top of your file (Figure 1.8 & 1.9).  It controls how your final output looks and which type of output it becomes.  When you create a markdown file, your code will look like one of these two options (one created using notebook and one markdown - either are fine)
+This is the code at the top of your file (Figure \@ref(fig:friendlyt)).  It controls how your final output looks and which type of output it becomes.  When you create a markdown file, your code will look like one of these two options (one created using notebook and one markdown - either are fine)
 
 ```{r, yamlt, echo=FALSE,fig.cap="One created using a notebook and one using a markdown"}
 knitr::include_graphics('images/Fig02_03YAMLCode.png')
@@ -604,7 +609,7 @@ There are many more details about different options you can add here: https://rs
 If you want to get really fancy, there is an interesting package to help you design YAML code here: https://education.rstudio.com/blog/2019/10/tools-for-teaching-yaml-with-ymlthis/
 
 
-### Text formats
+### Text formats {#S.Tutorial.2B.2}
 
 R-Markdown uses text formatting a bit like LateX rather than word where you format the text as you write.  First off - there are many cheat-sheets out there, but I particularly like this one https://www.markdownguide.org/basic-syntax/.  
 
@@ -637,16 +642,16 @@ R is very sensitive to blank white lines.  Put them everywhere.  Put a blank lin
 ```
 
 
-*Outside* a code chunk, the # symbol makes a heading, AS LONG AS YOU HAVE A WHITE LINE ABOVE AND BELOW.  Have a look at the figure above for an example.  Including headings this way allows automatic section numbering and will allow the table of contents to automatically be created.  In the script itself the headings won't show up - you will only see them when you press knit.
+*Outside* a code chunk, the # symbol makes a heading, AS LONG AS YOU HAVE A WHITE LINE ABOVE AND BELOW.  Have a look at Figure \@ref(fig:quickreft) for an example.  Including headings this way allows automatic section numbering and will allow the table of contents to automatically be created.  In the script itself the headings won't show up - you will only see them when you press knit.
 
 **Bold and italic:**
 
-Putting stars or _ around your text will make it bold or italic (or both).  Again have a look at the figure above and the cheat-sheet. Interestingly (and annoyingly), there is no simple way to underline text. In the script itself the text formatting won't show up, you will only see them when you press knit.
+Putting stars or _ around your text will make it bold or italic (or both).  Again have a look at Figure \@ref(fig:quickreft) and the cheat-sheet. Interestingly (and annoyingly), there is no simple way to underline text. In the script itself the text formatting won't show up, you will only see them when you press knit.
 
 
-## Tutorial 2C: Selecting & summarising data 
+## Tutorial 2C: Selecting & summarising data {#S.Tutorial.2C}
 
-### Data.frame introduction
+### Data.frame introduction {#S.Tutorial.2C.1}
 
 Most of the data we will look at is in "data.frame" format.  This is a table, just like an excel spreadsheet, with one row for each observation and one column for each variable. Each column has a column name.
 
@@ -703,7 +708,7 @@ ncol(dataset)
 ```
 
 
-### Selecting individual values
+### Selecting individual values {#S.Tutorial.2C.2}
 
 You can select rows and columns using SQUARE brackets and [rows,columns].  For example
 
@@ -727,7 +732,7 @@ b <- dataset[ ,c("college","tattoos")]
 ```
 
 
-### Selecting a single column 
+### Selecting a single column {#S.Tutorial.2C.3}
 
 The easiest way to do this is with the $ symbol.  LEARN THIS!  It is incredibly useful
 
@@ -737,7 +742,7 @@ For example, to view the age column of the pirates table, I would type `pirates$
 hist(dataset$age,xlab="Pirates ages")
 ```
 
-### Selecting mulitple columns
+### Selecting mulitple columns {#S.Tutorial.2C.4}
 
 Sometimes your table is very large and you might only care about a few of the variables.  So we could make a new table where we only keep the columns we care about.  For example, as described in the R cheatsheet
 
@@ -768,7 +773,7 @@ head(newdata)
 
 ```
 
-### Selecting subsets of rows/observations
+### Selecting subsets of rows/observations {#S.Tutorial.2C.5}
 
 Very commonly, we want to select only *some* rows in our table.  For example, let's say I want to look at the distribution of men's beard lengths.  This  means that I only want to select the men in the pirates dataset.  
 
@@ -820,7 +825,7 @@ max(tall.parrot.eye$tattoos)
 ```
 
 
-### Looking at summary tables
+### Looking at summary tables {#S.Tutorial.2C.6}
 
 We often want to see summary statistics of our data. We covered the `summary` command last week and above.  But what about categorical data?  Just how many pirates liked Monsters Inc.?   We can look at this using the `table()` command.
 
@@ -842,7 +847,7 @@ Going one step further, we can see that both of our two non-binary pirates who c
 table(dataset$fav.pixar,dataset$sex,dataset$sword.type)
 ```
 
-### Basic plots (one variable)
+### Basic plots (one variable) {#S.Tutorial.2C.7}
 
 In general, there are two very good websites for making professional graphics in R. I regularly browse both of them along with stack overflow to generate plots to be proud of, or to ask questions like "how do I change the axis size?".
 
@@ -853,7 +858,7 @@ In general, there are two very good websites for making professional graphics in
     - https://www.r-graph-gallery.com/index.html
 
 
-#### Histograms {-}
+#### Histograms {-} 
 
 We discussed the basic histogram command last week: `hist(variable)`.  For example `hist(malepirates$age)` makes a histogram of the age column in the data.frame we created earlier on male pirates.
 
@@ -885,11 +890,11 @@ ggqqplot(malepirates$age,col="blue")
 ```
 
 
-## Tutorial 2D: Distributions and tests
+## Tutorial 2D: Distributions and tests {#S.Tutorial.2D}
 
 We have talked about several distributions and tests so far in the lab.  To see the help files for most of them, see `?Distributions`
 
-### Normal distribution
+### Normal distribution {#S.Tutorial.2D.1}
 
 To see the help file for all these:
 ```{r,eval=FALSE}
@@ -924,7 +929,9 @@ qnorm(0.8,mean=4,sd=2,lower.tail = FALSE)
 ```
 
 
-### Student's t-distribution
+### Student's t-distribution  {#S.Tutorial.2D.2}
+
+What even is this?  See this nice resource: https://365datascience.com/tutorials/statistics-tutorials/students-t-distribution/
 
 To see the help file for all these:
 ```{r,eval=FALSE}
@@ -947,6 +954,7 @@ qt(0.9,df=25,lower.tail = TRUE)
 ```
 
 To conduct a full t-test on some data:
+
 ```{r}
 # Conduct a one sided t-test where we think that H0: mu(age)=30 on our pirates data (e.g. H1: mu(age) != 30 )
 t.test(dataset$age,mu=30,alternative="two.sided")
@@ -957,7 +965,7 @@ or see the detailed tutorial here: http://www.sthda.com/english/wiki/one-sample-
 and here for comparing two samples: http://www.sthda.com/english/wiki/unpaired-two-samples-t-test-in-r
 
 
-### Wilks Shapiro test for normality
+### Wilks Shapiro test for normality {#S.Tutorial.2D.3}
 
 To test for normality: 
 
@@ -966,7 +974,7 @@ To test for normality:
 shapiro.test(dataset$age)
 ```
 
-## Tutorial 3A - Editing code chunks
+## Tutorial 3A - Editing code chunks {#S.Tutorial.3A}
 
 R code chunks are really useful as you can completely control the output seen in your final report.  To edit these, we edit the bit INSIDE the curly brackets at the top of the code chunk.  
 
@@ -1009,9 +1017,13 @@ knitr::include_graphics('images/Fig03_04Chipmunk.png')
 ```
 
 
-## Tutorial 3B - Regression Models
+## Tutorial 3B - Regression Models {#S.Tutorial.3B}
 
-Now we will fit our first regression model.  The command to do this is `lm()` e.g. linear model.
+Now we will fit our first regression model.  
+
+### "Standard" regression output {#S.Tutorial.3B.1}
+
+The command to do this is `lm()` e.g. linear model.
 
 ```{r,eval=FALSE}
 output <- lm(y_column ~ x_column,data=tablename)
@@ -1044,7 +1056,7 @@ abline(star.lm)
 ```
 
 
-#### Fancy regression output
+### "Fancy" OLSRR regression output {#S.Tutorial.3B.2}
 
 If you want a different way of seeing the same output, you can use the `ols_regress()` command inside the `olsrr` package.  
 
@@ -1063,3 +1075,1204 @@ knitr::include_graphics('images/Fig03_05OLSRR.png')
 ```
 
 This is probably because you loaded the moderndive package. They do not play nicely together. Save your work, restart R and **do not run any line that says library(moderndive)!**.
+
+
+## Tutorial 4A: Plotting in ggplot2 {#S.Tutorial.4A}
+
+There are *many* tutorials out there, so I don't want to spam you with my additional instructions. 
+
+Here are my top resources for learning how to plot in ggplot2.
+
+1. There is a data camp course on it! https://learn.datacamp.com/courses/introduction-to-data-visualization-with-ggplot2 
+2. Modifiable examples: https://www.r-graph-gallery.com
+3. For basic plotting, I like this: http://www.sthda.com/english/wiki/ggplot2-scatter-plots-quick-start-guide-r-software-and-data-visualization
+4. Another nice tutorial to work through: https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html
+4. More details: https://r4ds.had.co.nz/data-visualisation.html
+5. Every detail you could ever want. I use this as a reference. https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/
+
+## Tutorial 4B: Identifying/removing outliers {#S.Tutorial.4B}
+
+Note this tutorial is not about whether you SHOULD remove an outlier or any other value, it's simply about the mechanics of how to do so if you choose.
+
+OK, let's make a test dataset.  I can do this using the data.frame() command. 
+
+```{r}
+test <- data.frame(VarA=c(2,5,3:7,2,6,2,10),VarB=c(1,4,3:7,5,2,5,-30))
+test
+```
+
+```{r}
+plot(test$VarA,test$VarB,pch=16)
+```
+
+
+There is a point that looks very suspicious and we want to identify it.
+
+##### Method 1:Filter {-}
+
+We can look at the plot, then use the filter command to identify it and print it out onto the screen. 
+
+```{r}
+filter(test,VarB < -20 & VarA >9)
+```
+
+or similarly:
+
+```{r}
+# This version shows the row number
+test[(test$VarB < -20)&(test$VarA >9),]
+```
+
+We can check the outlier by recoloring it on our plot using the `lines()` command: (NOTE YOU NEED BOTH PLOT AND LINES IN THE SAME CODE CHUNK FOR THIS TO WORK)
+
+```{r}
+outlier <- filter(test,VarB < -20 & VarA >9)
+
+# Make the initial plot
+# Add the outlier as type="p" for points.
+plot(test$VarA,test$VarB, pch=16)
+lines(outlier$VarA,outlier$VarB,col="red",type="p",pch=16)
+```
+
+
+To remove it, we simply use filter the other way, e.g. use it to select everything else..
+
+```{r}
+newtest <- filter(test,VarB > -20)
+plot(newtest$VarA,newtest$VarB,pch=16)
+```
+
+##### Method 2: Identify Command {-}
+
+Although R is mostly not interactive, there is one interactive tool you can use to click on a point and identify it, the `identify()` command.
+
+THIS ONLY WORKS IN THE CONSOLE, DON'T RUN IN A CODE CHUNK 
+
+1. First, make sure that you can clearly see the plot quadrant of your screen (between Files & Packages).
+
+2. In the console, plot the data e.g. run `plot(test$VarA,test$VarB)`. You should see the plot clearly
+
+3. Now, in the console, type `identify(test$VarA,test$VarB)`.  When you press enter, your mouse will turn into a little cross.  Click on all the points you want to identify THEN PRESS ESCAPE.  The row number of the points you clicked on will appear in the plot
+
+```{r, identify, echo=FALSE}
+knitr::include_graphics('images/Fig04_01Identify.png')
+```
+
+So now we know it is row 11 that is causing the problem.  We can take a look at it by typing
+
+```{r}
+# E.g. JUST row 11 and all the columns
+test[11, ]
+```
+
+and we can remove it with the minus sign
+
+```{r}
+newtest <- test[-11, ]
+plot(newtest$VarA,newtest$VarB,pch=16)
+
+```
+
+Remember that if you do this more than once, all the row numbers will move around, so I am a fan of using identify to take a look at the data, but using filter to remove it.
+
+## Tutorial 4C Writing equations in R-Studio {#S.Tutorial.4C}
+
+### In Markdown  {#S.Tutorial.4C.1}
+
+##### Double dollar signs {-}
+
+It is relatively easy to write equations in R markdown.  They use the "LaTeX" format and you put them between double dollar signs.  
+
+For example, try typing `$$x=2$$` on a new line of the white text area in your script ( NOT INTO A CODE CHUNK), then pressing knit.  You should see: 
+
+$$x=2$$
+
+But how do you write all the fancy equation stuff?  We cheat.
+
+Create the equation you want in one of these generators, then copy the code into your script and put it between double dollar signs:
+
+ - https://latex.codecogs.com/eqneditor/editor.php
+ - https://www.tutorialspoint.com/latex_equation_editor.htm
+ 
+ For example
+ 
+`$$\widehat{y} = b_{0}+b_{1}x$$`
+
+Shows up as $$\widehat{y} = b_{0}+b_{1}x$$
+
+###### Single dollar signs {-}
+
+Essentially this is the same, but the equation is part of the text and you only see the output when you press knit. For example including `$x=2$` in this sentence shows $x=2$ as an output.
+
+### Using Equatiomatic {#S.Tutorial.4C.2}
+
+There is a really neat package called `equatiomatic` that we can use to directly make equations from our linear models.
+
+Tutorial here: https://cran.r-project.org/web/packages/equatiomatic/vignettes/intro-equatiomatic.html
+
+Install this package (e.g. using `install.packages("equatiomatic")`) and load it by putting `library(equatiomatic)` inside your "libraries" code chunk and re-running.
+
+We can now extract an equation from any linear model variable. For example, 
+```{r}
+data(starwars)
+mymodel <- lm(mass~height,data=starwars)
+extract_eq(mymodel)
+```
+
+If you run it in the console, the command returns the LaTeX code you need to add it into the text yourself. 
+
+Let's say our data is a sample, not the population, then we want to use lower case names for our sample statistics (b0 & b1). There is no easy way to do this in the command, so I literally run the command in the console, then copy the command over to the TEXT part of the report and change the betas to 'b's
+
+If you want to use the actual numbers, simply turn on use_coefs=TRUE.
+
+
+```{r}
+extract_eq(mymodel, use_coefs = TRUE)
+```
+
+Finally, you probably don't want the code chunk showing up, so you can use the "echo=FALSE" argument inside the {r} part to stop the code chunk from being visible (see Tutorial 3A). For example, I ran exactly the same code chunk with echo=FALSE activated and got this:
+
+```{r,echo=FALSE}
+extract_eq(mymodel, use_coefs = TRUE)
+```
+
+
+
+## Tutorial 5A ANOVA {#S.Tutorial.5A}
+
+There are two quick and easy ways to make an ANOVA table. Lecture 13 describes it in a lot more detail.
+
+### Base R {#S.Tutorial.5A.1}
+
+Simply use the ANOVA command.  For example
+
+```{r}
+data(starwars)
+mymodel <- lm(mass~height,data=starwars)
+summary(mymodel)
+```
+
+```{r}
+anova(mymodel)
+```
+
+
+### Using OLSRR {#S.Tutorial.5A.2}
+
+In OLSRR, it's even easier.  Our standard `ols_regress()` command includes ANOVA.
+
+```{r}
+data(starwars)
+mymodel <- lm(mass~height,data=starwars)
+ols_regress(mymodel)
+```
+
+
+## Tutorial 5B Diagnostics part A {#S.Tutorial.5B}
+
+We know from the lectures that there are multiple assumptions underpinning whether a regression is a good model or not.These are described in detail in:
+
+ - Online STAT-462 - Lesson 4 (https://online.stat.psu.edu/stat462/node/116/)
+ 
+Regression diagnostics are a set of tools we can use to assess these assumptions.  Many regression diagnostics include plots of standardized residuals, which we will focus on today.
+
+Let's use the example from the online textbook. Some researchers (Urbano-Marquez, et al., 1989) were interested in determining whether or not alcohol consumption was linearly related to muscle strength. The researchers measured the total lifetime consumption of alcohol (x) on a random sample of n = 50 alcoholic men. They also measured the strength (y) of the deltoid muscle in each person's nondominant arm. 
+
+```{r}
+testdata <- read.csv("alcoholstrength.csv")
+mymodel <- lm(strength~alcohol,data=testdata)
+plot(testdata$alcohol,testdata$strength,xlab="Alcohol",ylab="Strength",pch=16)
+abline(mymodel)
+```
+
+### Residual plots  {#S.Tutorial.5B.1}
+
+It can be difficult looking at the raw data to assess whether many of the assumptions are true or not.  So in this case we can look at the residuals
+
+We can access the residuals and many other model elements directly from the model
+
+```{r}
+names(mymodel)
+# see ?lm for more explanation
+```
+
+```{r}
+testdata$strength_predicted <- mymodel$fitted.values
+testdata$residuals          <- mymodel$residuals
+head(testdata)
+```
+
+
+#### Residuals vs fitted values {-}
+
+The most common residual plot you will see is residuals vs predicted values for each point.  You can see how to interpret it here: https://online.stat.psu.edu/stat462/node/117/
+
+Manually this is:
+
+```{r}
+plot(testdata$strength_predicted,testdata$residuals)
+abline(h=0) #plot a horizontal line
+```
+
+However R has many built in functions for this one:
+
+```{r,resplot,fig.cap="A residual plot for data that likely passes all the tests for linear regression"}
+# using the olsrr package
+ols_plot_resid_fit(mymodel)
+```
+
+We want our residuals to be normally distributed, random (e.g. independent) and showing no pattern or unequal variance.
+
+#### Residuals vs predictor {-}
+
+Alternatively, we can use this to manually make a plot of the residuals against the x-values (the predictor) - see here for how to interpret this and compare it to the fitted value plot https://online.stat.psu.edu/stat462/node/118/
+
+```{r}
+plot(testdata$alcohol,testdata$residuals)
+abline(h=0) #plot a horizontal line
+```
+
+Let's use these to see how we can test the four assumptions underpinning linear regression (LINE).
+
+Further residual interpretation can be seen here: https://online.stat.psu.edu/stat462/node/124/
+
+### Checking Linearity {#S.Tutorial.5B.2}
+
+If you are applying a linear model to data which is non-linear, you are in all sorts of trouble.  Your model is simply a bad model and you will need some sort of transformation, or simply a better model altogether.
+
+```{r,echo=FALSE,fig.cap="Don't be the person who makes this linear model!"}
+mystery <- read.csv("MysteryData.csv")
+mystmodel <- lm(mystery)
+plot(mystery,pch=16,asp=1)
+abline(mystmodel)
+```
+
+ALWAYS PLOT YOUR DATA AND LOOK AT IT (even if I don't tell you to explicitly).  For more examples of why this is useful to do, see here: https://online.stat.psu.edu/stat462/node/123/
+
+However, in real life, it can often be difficult to assess whether the fit is linear by looking at the scatterplot alone.  So instead, we look at the residuals, whcih often show a pattern much more clearly.  For example
+
+```{r, fig.cap="This looks relatively linear, but...."}
+treadwear <- read.csv("treadwear.csv")
+tread_model <- lm(mileage~groove,data=treadwear)
+plot(treadwear$groove,treadwear$mileage,xlab="groove",ylab="mileage",pch=16)
+abline(tread_model)
+```
+
+```{r,fig.cap="A parabola would clearly fit the data better"}
+# using the olsrr package
+ols_plot_resid_fit(tread_model)
+```
+
+
+Compare this residual plot to the strength/alcohol example above in Figure \@ref(fig:resplot).  You can see in the treadwear data, the residuals depart from 0 in a very systematic manner. They are clearly positive for small x values, negative for medium x values, and positive again for large x values. Clearly, a non-linear model would better describe the relationship between the two variables. In future classes we will touch upon polynomial models that you might use to deal with this.
+
+### Checking Independence {#S.Tutorial.5B.3}
+
+This is a tough one.  Essentially we are asking if each row in our table is independent and representative of the population. So essentially we are looking for confounding variables.  Or to put it another way, is there another variable that we need to include in our model.
+
+Let's say our data is not independent but we notice.  What happens? First off, this isn't so terrible as whether linearity is broken. The linear relationship likely still stands between our predictor and our response variable.  So for example, there really is a relationship between height and weight that's relatively linear.  Or house prices in our State College pre-regressinon example might really be taken from a normal distribution.
+
+BUT, it we had taken into account this new variable ALSO, we might have done an even better job.  So for example, the relationship between height and weight is definitely affected by someone's gender.  Or in the example from Lab 3, knowing how close a house is to "downtown" is a better predictor of price than knowing how far East/West it is.  
+
+Equally, the non independence of our data makes it hard for us to be sure how good our model is or for us to make predictions. For example, if we were looking at height and weight and our sample was made up only of people who identified as women, then there might be clear limitations in predicting the weight of the men's basketball team.
+
+Because every case is different, there is no "set method" for checking independence, but there are a few common ways to check things that you are suspicious of.  So the first item is to think about the problem.  What might impact your response variable that you have not taken into account.
+
+
+#### Covariance matrix {-}
+
+Looking at correlations is a quick (but often misleading) way to assess what is happening.  Essentially we can look at the correlation between each column of data.
+
+The basic way to do this is very quick and easy.  For example, let's look at our Star Wars height/data.  
+
+The GGally function allows us to see the histogram of each column we choose to plot - along with the correlation of any numeric pairs.  Let's look at this for a new dataset looking at how much people are tipped in New York restaurants.
+
+
+```{r,message=FALSE,warning=FALSE}
+# Quick display of two capabilities of GGally, to assess the distribution and correlation of variables 
+house <- read_excel("Lab03_house.xlsx")
+
+# Choose column names - let's say I don't care about location
+colnames(house)
+
+# Create plot - note I have message=TRUE and warning=TRUE turned on at the top of my code chunk
+ggpairs(house[,c("House.Price" ,"House.Age","Distance.Station","Number.Shops" )])
+
+```
+
+You can simply look at the correlations of any NUMERIC columns using the corrplot code, as we did in Lab 3.
+
+```{r}
+library(corrplot)
+house.subset <- house[ , sapply(house,is.numeric)]
+corrplot(cor(house.subset),method="ellipse",type="lower")
+```
+
+There are LOADS of other ways to run correlation plots here: https://www.r-graph-gallery.com/correlogram.html
+Feel free to choose a favourite.
+
+Importantly, remember back to this website - https://www.tylervigen.com/spurious-correlations.  Just because another variable is correlated with our response does not mean it HAS to be in the model.  It simply means that you might want to consider whether there is a reason for that correlation.
+
+
+#### Scatterplots and residual plots with a suspected confounding variable {-}
+
+A second way we looked at in a previous lab was to add colour to our scatterplot and see if we can see any influence from a suspected confounding variable.  
+
+```{r}
+# Create a plot
+p <- house %>%                  
+  ggplot( aes(Latitude,House.Price, col= Distance.Station)) +
+  geom_point() +
+  theme_classic()+
+  scale_color_gradient(low="blue", high="red")
+
+# and actually plot it
+ggplotly(p)
+```
+
+However, this can be hard to see - so instead we can plot the residuals, but have the x-axis as the the variable we think is affecting independence.  For example
+
+```{r, fig.cap="These residuals do not look randomly distributed on the page.."}
+housemodel            <- lm(House.Price~Latitude,data=house)
+house$price_predicted <- housemodel$fitted.values
+house$residuals       <- housemodel$residuals
+
+plot(house$Distance.Station, house$residuals)
+```
+
+This definitely doesn't look like a random cloud!  It looks like distance to the station is really impacting the linear model between house price and latitude.
+
+In this case we will use MULITPLE REGRESSION. (later in the course)
+
+#### If your data includes a date or time-stamp {-}
+
+Then you have time-series data and there is an ENTIRE COURSE on modelling it (https://online.stat.psu.edu/stat510/).  For now, if your data contains any time stamp or date, be very cautious.  Changes are that your data contains auto-correlation e.g. the response tomorrow is likely to be affected by the response today.  
+
+In the short term, if you know the order in which your data was collected, you could plot a residuals/order plot as described here: https://online.stat.psu.edu/stat462/node/121/. 
+
+
+#### If your data includes a location {-}
+
+Spatial data is often not independent due to Tobler's Law (close together things are more similar than those further apart).  For example, imagine you were looking at the correlation between money spent on alcohol and undergraduate degree score  Your relationship might be different in areas with lower drinking age-limits, or in countries where drinking is outlawed.  
+
+So knowing the location of your sample is important.  The easiest thing we can do here to check for independence is to make a literal map of the residuals.  For example, remember in lab 3 - let's do something similar
+
+```{r,eval=FALSE}
+# Command from the sf library
+# Make a spatial version of the data using the Longitide and Latitude columns
+house.spatial <- st_as_sf(house,coords=c("Longitude","Latitude"),crs = 4326)
+
+# make interactive, for static set as "plot", for interactive set as "view"
+tmap_mode("plot")
+
+# Command from the tmap library
+# and plot
+qtm("Esri.WorldTopoMap") + 
+     qtm(house.spatial, # data
+         symbols.col="residuals", # which column for the symbols
+         symbols.size=.4, # how big
+         symbols.palette="RdBu",
+         midpoint=0) # color breaks
+```
+There definitely looks like the residuals are not randomly distributed in space, which makes me suspicious that there is spatial autocorrelation (e.g. correlation with itself - the location of a point impacts the residual).  
+
+We can test this through a statistic called Moran's I - which compares the residual at each point against its residuals for surrounding points.  In my spatial statistics course, we spend about 3 weeks on Moran's I, so there is a lot of nuance we are skipping over here.  For more, see https://mgimond.github.io/Spatial/spatial-autocorrelation.html 
+ 
+```{r}
+library(moranfast)
+moranfast(house$residuals, 
+          house$Longitude, 
+          house$Latitude, 
+          alternative = "two.sided")
+
+```
+
+But essentially here we have a hypothesis test:
+
+ - H0: There is no spatial autocorrelation. The "colour"/value of each residual has complete spatial randomness.  I =  0
+ - H1: Spatial autocorrelation is present. There is a significant pattern in the "colour"/values of each point    I != 0
+
+Test - The Global Moran’s I statistic is the correlation coefficient for the relationship between a variable (like income) and itself at surrounding values.
+
+P-value - the probabiity of seeing this pattern if H0 really was true.
+
+So here in this case, the p-value is very low, confirming what we visually see in the plot above.  There is evidence to reject the null hypthesis and suggest that spatial autocorrelation is present.
+
+If this is true, we can use spatial GLMs to take this into account (again, later in the course).
+
+
+### Checking Normality {#S.Tutorial.5B.4}
+
+There are three things we might want to check around normality and regression - but essentially we are testing whether the RESIDUALS are normal around the regression line.  To get the best estimates of parameters such as B0 and B1, the residuals must be normally distributed around the regression line.  but this has a much smaller effect typically than non-linearity or breaking assumptions of independence.
+
+Breaking normality is only important in the calculation of p values for significance testing and confidence intervals, but this is only a problem when the sample size is  small.  When the sample size is  largeer (>200), the Central Limit Theorem ensures that the distribution of residuals will approximate normality when calculating parameters.
+ 
+So never throw away your data if it breaks normality. But it's good to take a look.
+
+Let's go back to our original test data:
+
+```{r}
+mymodel <- lm(strength~alcohol,data=testdata)
+plot(testdata$alcohol,testdata$strength,xlab="Alcohol",ylab="Strength",pch=16)
+abline(mymodel)
+```
+
+To test normality, we can use OLSRR to:
+
+```{r}
+#Create a QQ plot of the residuals
+ols_plot_resid_qq(mymodel)
+#Create a histogram of the residuals
+ols_plot_resid_hist(mymodel)
+#Run a Wilks-Shapiro test for normality
+ols_test_normality(mymodel)
+```
+
+In this case, our residuals look very normal.
+
+Compare that to our house dataset, which suggests that the data is mildly non normal.
+
+```{r}
+housemodel <- lm(House.Price~Latitude,data=house)
+plot(house$House.Price~house$Latitude,xlab="Latitude",ylab="House Price",pch=16)
+abline(housemodel)
+#Create a QQ plot of the residuals
+ols_plot_resid_qq(housemodel)
+#Create a histogram of the residuals
+ols_plot_resid_hist(housemodel)
+#Run a Wilks-Shapiro test for normality
+ols_test_normality(housemodel)
+```
+
+The answer to non-normal data is to use a GLM (Generalised Linear Model), which again we will get to later in the semester.
+
+Alternatively you can use your linear model, but make the significance level more rigarous (say 1% rather than 5%) to take into account the fact that the assumptions underpinning the calculations might be flawed.
+
+In terms of detailed interpretation, read this page: https://online.stat.psu.edu/stat462/node/122/ 
+ 
+### Checking Equal Variance/homoskadisity {#S.Tutorial.5B.5}
+
+The easiest thing to do here is to plot the residuals, then see if you see any variations in variance.  For example in our house regression, the residuals look like this
+
+```{r}
+ols_plot_resid_fit(housemodel)
+```
+You can clearly see here that for low values of the fitted data, there is not much variance - but there is a lot of variance between 30-50
+
+You can also run statistical tests, explained in more detail here: https://rpubs.com/tskam/Session06
+
+```{r}
+# F test - assumes residuals are  independent and identically distributed (i.i.d.)
+ols_test_f(housemodel)
+```
+
+In this case, we can see that perhaps we neeed to worry less about unequal variance,  
+
+There is also another test available, the Breusch Pagan Test - but this relies on the residuals being normally distributed.
+
+## Tutorial 5C Confidence and Prediction Intervals {#S.Tutorial.5C}
+
+Essentially these are two different things:
+
+_Confidence interval:_ “Error bar” on the location of the regression line at any specific value of x, or "what is the uncertainty on the population mean of y, for a specific value of x?”
+
+_Prediction interval:Predicting the range of likely y-values for a new data-point, or “if you had to put a new dot on the scatterplot, what range of y values would it fall under”
+
+These are described in detail here:
+
+ - https://online.stat.psu.edu/stat462/node/125/
+ - https://online.stat.psu.edu/stat462/node/126/
+ - https://online.stat.psu.edu/stat462/node/127/
+ - https://online.stat.psu.edu/stat462/node/128/ 
+ 
+In R:
+
+```{r}
+#For our pirate weight/height dataset
+lm.pirate <- lm(weight~height,data=pirates)
+summary(lm.pirate)
+```
+
+```{r}
+# What are the AVERAGE WEIGHTS (and uncertainty on our estimate) 
+# of pirates whose heights are 150cm and 170cm?
+new.pirates <- data.frame(height=c(150,170))
+predict(lm.pirate,newdata=new.pirates,interval="confidence",level=0.95)
+
+```
+
+So we are 95% certain that on average, the AVERAGE weight of pirates who are 150cm tall falls between 52.8Kg and 53.74Kg
+
+```{r}
+# A new pirate joins and her height is 160cm.  What range of weights is she likely to have?
+new.pirates <- data.frame(height=c(160))
+predict(lm.pirate,newdata=new.pirates,interval="predict",level=0.95)
+
+```
+
+Her weight is likely to be somewhere between 53Kg and 69Kg with 95% certainty given our sample.
+
+
+
+## Tutorial 6A Diagnostics part B: Outliers {#S.Tutorial.6A}
+
+There are three key things to know when it comes to outliers:
+
+1. We use the word __outlier__ to describe an observation (point on the scatterplot) that has a very different response from the predicted response from the model e.g. it does not follow the trend determined by the rest of the dataset.  We consider it an outlier _only_ if it is an extreme "y" value e.g. an extreme response.
+
+2. If a data point has an x-value that is extremely different (either too high or too low) from the rest of the data points, we call this a __high leverage__ point.  It might, or might not be an outlier.
+
+3. We call a data point an __influential point__ if that data point has a considerable impact on the regression model. For instance, if the model fit changes considerably by removing a point, such data point is called an influential point.  Influential points tend to be further from the mean.  We know the regression lines goes through the mean of x and the mean of y, they tent to tilt like a see-saw.
+
+Both outliers and the leverage points can be influential depending on where they located in a scatterplot. We can easily see them using a fits vs residuals plot (we'll get to this below)
+
+For more details here, see  https://online.stat.psu.edu/stat501/lesson/11/11.1
+
+### Visual inspection {#Tutorial.6A0}
+
+The first way we can check for simple linear regression is to plot the data and take a look. Here are some examples that we can assess by eye which show the different effects.
+
+##### No outliers, influential or high leverage points {-}
+
+```{r,echo=FALSE,message=FALSE,fig.cap="No outliers, influential values or high leverage points"}
+data <- read.csv("neither.csv")
+layout(matrix(c(1,2), 1, 2, byrow = TRUE))
+plot(data$x,data$y,pch=16,xlab="x",ylab="y",main="Dataset A")
+plot(data$x,data$y,pch=16,xlab="x",ylab="y",main="Dataset A"); abline(lm(y~x,data=data))
+
+```
+
+In the figure above, all of the data points follow the general trend of the rest of the data, so there are no outliers (in the y direction). And, none of the data points are extreme with respect to x, so there are no high leverage points. Overall, none of the data points would appear to be influential with respect to the location of the best fitting line. e.g. if we removed any one point, the line would probably be the same.
+
+##### An outlier with no leverage {-}
+
+```{r,echo=FALSE,message=FALSE,fig.cap="One outlier. The red-dashed line is the model including all the points. The black-solid line is the model with the red point removed "}
+data1 <- read.csv("outlier.csv")
+data1b <- data1[-21,]
+
+layout(matrix(c(1,2), 1, 2, byrow = TRUE))
+plot(data1$x,data1$y,pch=16,xlab="x",ylab="y",main="Dataset B",col="red")
+lines(data1b$x,data1b$y,pch=16,xlab="x" ,ylab="y",main="Dataset B",type="p")
+plot(data1$x,data1$y,pch=16,xlab="x",ylab="y",main="Dataset B",col="red")
+lines(data1b$x,data1b$y,pch=16,xlab="x",ylab="y",main="DatasetB",type="p")
+abline(lm(y~x,data=data1b))
+abline(lm(y~x,data=data1),col="red",lty="dashed")
+
+```
+
+In the figure above, most of the data points follow the general trend of the rest of the data, but there is one clear outlier (one point that is unusual in the y direction). However, no point has an extreme x value, so there are no high leverage points. Overall, none of the data points would appear to be influential with respect to the location of the best fitting line. e.g.when we removed the red point,the line of best fit remains relatively stable.
+
+##### A high leverage point that isn't an outlier {-}
+
+```{r,echo=FALSE,message=FALSE,fig.cap="No outliers,but one high leverage point. The red-dashed line is the model including all the points. The black-solid line is the model with the red point removed"}
+data2 <- read.csv("leverage.csv")
+data2b <- data2[-25,]
+
+layout(matrix(c(1,2), 1, 2, byrow = TRUE))
+plot(data2$x,data2$y,pch=16,xlab="x",ylab="y",main="Dataset C",col="red",ylim=c(0,120))
+lines(data2b$x,data2b$y,pch=16,xlab="x" ,ylab="y",main="Dataset C",type="p")
+plot(data2$x,data2$y,pch=16,xlab="x",ylab="y",main="Dataset C",col="red",ylim=c(0,120))
+lines(data2b$x,data2b$y,pch=16,xlab="x",ylab="y",main="DatasetC",type="p")
+abline(lm(y~x,data=data2b))
+abline(lm(y~x,data=data2),col="red",lty="dashed")
+
+```
+In the figure above, most of the data points follow the general trend of the rest of the data, so there are no outliers (in the y direction). But one data points is extreme with respect to x. Overall, none of the data points would appear to be influential with respect to the location of the best fitting line. e.g.when we removed the red point,the line of best fit remained relatively stable.
+
+
+##### An influential high leverage outlier {-}
+
+```{r,echo=FALSE,message=FALSE,fig.cap="One influential high leverage outlier. The red-dashed line is the model including all the points. The black-solid line is the model with the red point removed" }
+data2 <- read.csv("influential.csv")
+data2b <- data2[-25,]
+
+layout(matrix(c(1,2), 1, 2, byrow = TRUE))
+plot(data2$x,data2$y,pch=16,xlab="x",ylab="y",main="Dataset D",col="red",ylim=c(0,120))
+lines(data2b$x,data2b$y,pch=16,xlab="x" ,ylab="y",main="Dataset D",type="p")
+plot(data2$x,data2$y,pch=16,xlab="x",ylab="y",main="Dataset D",col="red",ylim=c(0,120))
+lines(data2b$x,data2b$y,pch=16,xlab="x",ylab="y",main="Dataset D",type="p")
+abline(lm(y~x,data=data2b))
+abline(lm(y~x,data=data2),col="red",lty="dashed")
+
+```
+In the figure above, most of the data points follow the general trend of the rest of the data, with one clear outlier. This point also has high leverage abd appears to be very influential. e.g.when we removed the red point,the line of best fit changes hugely,
+
+Here with a simple regression, we can easily see outliers.  This is much harder when we have many predictors.  So as well as examining the data by eye, we can use diagnostic plots.
+
+### Detecting leverage {#Tutorial.6A1}
+
+Leverage ($h_{ii}$): is used for for measuring unusual observations in x-direction (high leverage point).   Essentially, the leverage quantifies the influence that the observed response  has on its predicted value. That is, if the leverage is small, then the observed response plays only a small role in the value of the predicted/modelled response. On the other hand, if the leverage is large, then the observed response plays a large role in the value of the predicted response. 
+
+This quantity is based on
+
+ - The distance of $x_{i}$ from the bulk of the x’s.
+ - The extent tjat the fitted regression line is attracted by the given point.
+ 
+The Leverage, $h_{ii}$ associated with the ith datapoint is:
+
+$$h_{ii}=\frac{1}{n}+\frac{\left(x_i-\overline{\left(x\right)}\right)^2}{\ \left\{\sum_{i=1}^n\left(x_j-\overline{\left\{x\right\}}\right)^2\right\}}$$
+
+and is described further in https://online.stat.psu.edu/stat501/lesson/11/11.2
+
+You don't need to remember the equation as R does the calculation for you, but here are some important properties of the leverages:
+
+1. The leverage  is a measure of the distance between the x value for the  data point and the mean of the x values for all n data points.
+2. The leverage  is a number between 0 and 1, inclusive.
+3. The sum of the  equals p, the number of parameters (regression coefficients including the intercept).
+
+A rule of thumb would be to classify classify $x_{i}$ as a high leverage point if 
+
+$$h_{ii}>\frac{2p}{n}$$
+where p = number of regression coefficients (2 for SLR) and n = number of observations
+
+We can calculate and plot the leverage easily for each point in either the base package (`hatvalues`), or using OLSRR (`ols_leverage`).  
+
+Let's see how this works for our scenarios above. If you are coding this, you don't necessarily need the left hand plot - but it's helpful for me showing you what is going on.
+
+```{r,message=FALSE,fig.cap="No outliers, influential values or high leverage points.  Thr highest x point is around the threshold for high leverage, but nothing special here"}
+# read the data
+data <- read.csv("neither.csv")
+
+#calculate the model
+model <- lm(y~x,data=data)
+leverage <- ols_leverage(model) 
+
+# Set up 2 sub-plots one next to each other
+layout(matrix(c(1,2), 1, 2, byrow = TRUE))
+
+# plot 1 (left hand side)
+plot(data$x,data$y,pch=16,xlab="x",ylab="y",main="Dataset A"); 
+abline(model)
+
+# plot 2 (right hand side). Remember to choose your own ylim
+plot(data$x,leverage,pch=16,ylim=c(0,.6),
+     xlab="x",ylab="y",type="h",
+     main="Dataset A leverage"); 
+
+# Calculate the critical value of leverage and add to plot
+n=nrow(data)
+p=length(coefficients(model))
+cutLev=2*p/n
+abline(h=cutLev,col="blue",lty=2)
+
+```
+
+```{r,echo=FALSE,message=FALSE,fig.cap="No outliers,but one high leverage point. The red-dashed line is the model including all the points. The black-solid line is the model with the red point removed"}
+data1           <- read.csv("leverage.csv")
+data1minuspoint <- data2[-25,]
+
+#calculate the model
+model1 <- lm(y~x,data=data1)
+leverage1 <- ols_leverage(model1) 
+
+# Set up 2 sub-plots one next to each other
+layout(matrix(c(1,2), 1, 2, byrow = TRUE))
+
+# plot 1 (left hand side)
+plot(data1$x,data1$y,pch=16,xlab="x",ylab="y",main="Dataset B",col="red") 
+lines(data1minuspoint$x,data1minuspoint$y,pch=16,type="p")
+abline(model1)
+
+# plot 2 (right hand side). Remember to choose your own ylim
+plot(data1$x,leverage1,pch=16,ylim=c(0,.6),
+     xlab="x",ylab="y",type="h",
+     main="Dataset B leverage"); 
+
+# Calculate the critical value of leverage and add to plot
+n=nrow(data1)
+p=length(coefficients(model1))
+cutLev=2*p/n
+abline(h=cutLev,col="blue",lty=2)
+
+```
+
+##### An important distinction! {-}
+
+There is such an important distinction between a data point that has high leverage and one that has high influence that it is worth saying it one more time:
+
+ - The leverage merely quantifies the potential for a data point to exert strong influence on the regression analysis.
+ - The leverage depends only on the predictor values.
+ - Whether the data point is influential or not also depends on the observed value of the reponse.
+
+### Detecting outliers {#Tutorial.6A2}
+
+In lab 5, we mentioned two measures that we use to help identify outliers. They are:
+
+ - Residuals
+ - Studentized residuals (or internally studentized residuals) (often called standardized residuals)
+
+First, briefly review these measures using this page: https://online.stat.psu.edu/stat501/lesson/11/11.3
+ 
+OLSRR also offers several more plots and tests including :
+
+ - Cook’s D Bar Plot
+ - Cook’s D Chart
+ - DFBETAs Panel
+ - DFFITs Plot
+ - Studentized Residual Plot
+ - Standardized Residual Chart
+ - Studentized Residuals vs Leverage Plot
+ - Deleted Studentized Residual vs Fitted Values Plot
+ - Hadi Plot
+ - Potential Residual Plot
+
+For now, we will focus on one of the most effective ways to assess residuals, the studentized residual/fits plot.
+
+
+For example for our test data:
+
+```{r,message=FALSE}
+# read the data
+data <- read.csv("neither.csv")
+
+#calculate the model
+model <- lm(y~x,data=data)
+leverage <- ols_leverage(model) 
+
+# plot 1 (left hand side)
+plot(data$x,data$y,pch=16,xlab="x",ylab="y",main="Dataset C"); 
+abline(model)
+
+# plot 2 (right hand side). Remember to choose your own ylim
+ols_plot_resid_stud(model)
+
+```
+
+There should be no absolute cut-off here (around 2-3 is a warning sign).  Instead, take these as an opportunity to explore those points further.  For example here is our plot with the residual:
+
+
+```{r,message=FALSE}
+# read the data
+data1 <- read.csv("outlier.csv")
+
+#calculate the model
+model1 <- lm(y~x,data=data1)
+
+# plot 1 (left hand side)
+plot(data1$x,data1$y,pch=16,xlab="x",ylab="y",main="Dataset B"); 
+abline(model1)
+
+# plot 2 (right hand side). Remember to choose your own ylim
+ols_plot_resid_stand(model1)
+
+```
+
+Here the plot is telling me that it thinks row 21 of the dataset might be an outlier
+
+```{r}
+data1[21,]
+```
+
+
+### Detecting influential points {#Tutorial.6AC}
+
+
+If a point is both an outlier AND has leverage, chances are it will be influential over the fit.  
+
+OLSRR has a nice way of summarising both statistics.  For example here are our four plots together:
+
+
+```{r,message=FALSE,fig.cap="Our four examples"}
+# read the data
+data <- read.csv("neither.csv")
+data2 <- read.csv("outlier.csv")
+data2b <- data2[-21,]
+data3 <- read.csv("leverage.csv")
+data3b <- data3[-25,]
+data4 <- read.csv("influential.csv")
+data4b <- data4[-25,]
+
+#calculate the model
+model <- lm(y~x,data=data)
+model2 <- lm(y~x,data=data2)
+model3 <- lm(y~x,data=data3)
+model4 <- lm(y~x,data=data4)
+
+# Set up 4 sub-plots one next to each other
+layout(matrix(c(1,2,3,4), 2, 2, byrow = TRUE))
+
+plot(data$x,data$y,pch=16,xlab="x",ylab="y",main="Dataset A",col="black") 
+abline(model)
+
+plot(data2$x,data2$y,pch=16,xlab="x",ylab="y",main="Dataset B",col="red") 
+lines(data2b$x,data2b$y,pch=16,type="p")
+abline(model2)
+
+plot(data3$x,data3$y,pch=16,xlab="x",ylab="y",main="Dataset C",col="red") 
+lines(data3b$x,data3b$y,pch=16,type="p")
+abline(model3)
+
+plot(data4$x,data4$y,pch=16,xlab="x",ylab="y",main="Dataset D",col="red",ylim=c(0,100)) 
+lines(data4b$x,data4b$y,pch=16,type="p")
+abline(model4)
+
+```
+```{r}
+# model A
+ols_plot_resid_lev(model)
+# model B
+ols_plot_resid_lev(model2)
+# model C
+ols_plot_resid_lev(model3)
+# model D
+ols_plot_resid_lev(model4)
+```
+
+Cook’s Distance is another method for identifying influential points
+
+Cook’s distance, $D_i$,  is measured by deleting one observation at a time and each time re-fitting the regression line on the remaining observations. By comparing the results from the n observations to the results with ith observation deleted, we can get an idea about the influence from the ith observation on the fitted model.
+
+While there is no set cut-off for flagging a datapoint as an influential point, an observation with $D_i$ would most likely be an influential point.
+
+Again for our four examples:
+
+```{r}
+# model A
+ols_plot_cooksd_bar(model,type=3)
+# model B
+ols_plot_cooksd_bar(model2,type=3)
+# model C
+ols_plot_cooksd_bar(model3,type=3)
+# model D
+ols_plot_cooksd_bar(model4,type=3)
+
+```
+
+### Making a table of your residual diagnostics {#Tutorial.6AD}
+
+If your data is not huge, making a table of your residual diagnostics often makes it much easier to work out which points you are looking at.
+
+In fact we can do this very easily simply by making new columns in our table of data.  Let's try it with our influential dataset.
+
+```{r}
+testdata <- read.csv("influential.csv")
+mymodel <- lm(y~x,data=testdata)
+
+# Make a new column with the predicted y value
+testdata$y_predicted <- mymodel$fitted.values
+
+# Make a new column with the raw residuals
+testdata$residuals_raw <- mymodel$residuals
+
+# Make a new column with the standardisd/studentised residuals
+library(MASS)
+testdata$residuals_stud <- studres(mymodel)
+
+# Make a new column with the leverage
+testdata$x_leverage <- ols_leverage(mymodel)
+
+# Make a new column with the Cook's distance. OLSRR package
+testdata$cooks.distance <- cooks.distance(mymodel)
+
+# Print out the table
+head(testdata)
+```
+
+If you click on the NAME of the table (e.g. testdata in the environment tab) then it will open the table in a new tab which makes it easier to view things. 
+
+```{r,tablelookup, echo=FALSE, fig.cap = "How to sort the table in R-Studio. click the tiny arrows"}
+knitr::include_graphics('images/Fig06_3Table.png')
+```
+
+If you're sick of looking at things in R, you can save the table to a csv file and open it in excel.  If you are running your project, this should save into the folder where your project file is (you can add a different directory if required)
+
+```{r}
+write.csv(testdata,"Output.csv",quote=FALSE)
+```
+
+Finally, there might be too much data to look at things manually.  You can now use commands like filter on your new table to find which rows are of interest
+
+```{r}
+# Filter rows with high cooks distance
+dplyr::filter(testdata,  cooks.distance>1)
+```
+
+
+If you decide to remove an outlier, you can do it in excel! (save the file as something new first, then read that back in).  
+
+Or you can remove a specific row with the - symbol
+
+```{r}
+row_highcooks <- which(testdata$cooks.distance > 1)
+print(paste("Row number: ", row_highcooks))
+
+newdata <- testdata[-row_highcooks]
+
+## BE CAREFUL.  AS YOU REMOVE A DATA POINT ALL THE ROW NUMBERS WILL SHIFT AROUND, SO RUN THE WHICH COMMAND EACH TIME
+```
+
+
+Or you can simply use filter the other way around, but again be careful that you only remove the data you mean to
+
+```{r}
+# Filter rows with high cooks distance
+newdata <- dplyr::filter(testdata,  cooks.distance <= 1)
+```
+
+
+## Tutorial 6B Transformations {#S.Tutorial.6B}
+
+We will talk in the class (or read here! https://online.stat.psu.edu/stat501/lesson/9 ) about *why* to apply transformations.  Here I will simply show you how.
+
+This is very similar to the method in 6a.  We simply make a new column and use maths to fill in the value.
+
+For example:
+
+```{r,message=FALSE}
+# read the data
+data <- read.csv("neither.csv")
+head(data)
+```
+To make a column with $\frac{1}{x}$ as the predictor, we do
+
+```{r,message=FALSE}
+# Note I am trying to avoid spaces  or special characters in my data
+data$transform_1overx <- 1/data$x
+```
+
+
+To make a column with $x^2$ as the predictor, we do
+
+```{r,message=FALSE}
+# Note I am trying to avoid spaces  or special characters in my data
+data$transform_xsquare <- data$x^2
+```
+
+To make a column with $\log(x)$ as the predictor, we do (this is the NATURAL LOG)
+
+```{r,message=FALSE}
+# Note I am trying to avoid spaces  or special characters in my data
+data$transform_lnx <- log(data$x)
+```
+
+To make a column with $\log_{10}(x)$ as the predictor, we do 
+
+```{r,message=FALSE}
+# Note I am trying to avoid spaces  or special characters in my data
+data$transform_logx <- log(data$x,base=10)
+```
+
+To make a column with $\sqrt{x}$ as the predictor, we do 
+
+```{r,message=FALSE}
+# Note I am trying to avoid spaces  or special characters in my data
+data$transform_sqrtx <- sqrt(data$x)
+```
+
+And let's see the output
+
+```{r}
+head(data)
+```
+We could now perform our linear regression with any of these as our predictor.  For example
+
+
+```{r}
+newmodel <- lm(y~transform_sqrtx,data=data)
+plot(data$y~data$transform_sqrtx,xlab="Sqrt(x) UNITS",ylab="y UNITS")
+```
+
+You don't *have* to make a new column in advance, you can do the maths within the regression itself:
+
+```{r}
+newmodel2 <- lm(y~sqrt(x),data=data)
+
+# For Polynomial regression you can use the poly command e.g. X+X^2 
+
+newmodel3 <- lm(y ~ poly(x,2),data=data)
+
+```
+
+```{r}
+summary(newmodel3)
+```
+
+```{r}
+equatiomatic::extract_eq(newmodel3)
+```
+
+
+## Tutorial 6C Basic model comparisons {#S.Tutorial.6C}
+
+You are now being asked to assess two (or more) models and decide "which is best".
+
+We will talk about this in more detail later in the semester, but for now, there are two easy ways we can compare different models.
+
+##### Coefficient of Determination $R^2$ {-}
+
+We could look first at the coefficient of variation for each model in the model summary.  e.g. which model explains more variation in your response variable.
+
+##### AIC {-}
+
+There is another measure called AIC (read more here: https://online.stat.psu.edu/stat501/lesson/10/10.5).  For now, know that the lower the AIC, the "better" the model.  This is a non parametric test that takes into account the number of predictors and the amount of data, so is often more robust to bad linear fits than $R^2$ (which needs LINE to be true)
+
+Let's compare two models now, using our transformed data:
+
+```{r}
+model1 <- lm(y~x,data=data)
+model2 <- lm(y~sqrt(x),data=data)
+
+model1summary <- summary(model1)
+model2summary <- summary(model2)
+
+# Adjusted R2
+paste("Model 1:",round(model1summary$adj.r.squared,2) )
+paste("Model 2:",round(model2summary$adj.r.squared,2) )
+
+# AIC
+AIC(model1,model2)
+
+```
+
+We can see here that although $adj-R^2$ is higher for model 2, the AIC suggests that model 1 does a better job.
+
+YOU SHOULD NEVER USE THESE NUMBERS IN ISOLATION.  Also look at the data and use your common sense.  Use them as guidelines.
+
+
+## Tutorial 7A Covariance matrices {#S.Tutorial.7A}
+
+THIS TUTORIAL SUMMARISES EARLIER MATERIAL FROM TUTORIAL 5B (included here for convenience)
+
+Looking at correlations is a quick way to assess what is happening.  Essentially we can look at the correlation between each column of data.
+
+Importantly, remember back to this website - https://www.tylervigen.com/spurious-correlations.  Just because another variable is correlated with our response does not mean it HAS to be in the model.  It simply means that you might want to consider whether there is a reason for that correlation.
+
+There are two easy packages to look at this data.
+
+##### GGally package
+
+The GGally function allows us to see the histogram of each column we choose to plot - along with the correlation of any numeric pairs.  Let's look at this for our house dataset from a previous lab.
+
+
+```{r,message=FALSE,warning=FALSE}
+# Quick display of two capabilities of GGally, to assess the distribution and correlation of variables 
+house <- read_excel("Lab03_house.xlsx")
+
+# Choose column names - let's say I don't care about location
+colnames(house)
+
+# Create plot - note I have message=TRUE and warning=TRUE turned on at the top of my code chunk
+ggpairs(house[,c("House.Price" ,"House.Age","Distance.Station","Number.Shops" )])
+
+```
+
+##### Corrplot package
+
+You can simply look at the correlations of any NUMERIC columns using the corrplot code, as we did in Lab 3.
+
+```{r}
+library(corrplot)
+house.subset <- house[ , sapply(house,is.numeric)]
+corrplot(cor(house.subset),method="ellipse",type="lower")
+```
+
+##### Other packages
+
+There are LOADS of other ways to run correlation plots here: https://www.r-graph-gallery.com/correlogram.html.  Feel free to choose a favourite.
+
+
+## Tutorial 7B Mulitple Regression Models {#S.Tutorial.7B}
+
+Fitting a multiple regression model is just like fitting Simple Linear Regression.  We simply add in the other variables you want to look at.
+
+For example:
+
+Simple linear regression between our house price response variable and house age (predictor) is
+
+```{r}
+slr.model <- lm(House.Price ~ House.Age,data=house)
+slr.model
+```
+
+```{r}
+equatiomatic::extract_eq(slr.model,use_coefs=TRUE)
+```
+
+Multiple linear regression between our house price response variable and all our predictors is:
+
+```{r}
+mlr.model <- lm(House.Price ~ House.Age + Distance.Station + Number.Shops ,data=house)
+mlr.model
+```
+
+```{r}
+equatiomatic::extract_eq(mlr.model,use_coefs=TRUE)
+```
+
+## Tutorial 7C Residuals in MLR {#S.Tutorial.7C}
+
+Because all of our model assumtions centre around residuals, we can simply use the same code to assess LINE and outliers.  E.g.
+
+```{r}
+# Raw residuals
+ols_plot_resid_fit(mlr.model)
+
+# Studentized residuals
+ols_plot_resid_stud(mlr.model)
+
+# QQ plot, histogram and normality test of residuals
+ols_plot_resid_qq(mlr.model)
+ols_plot_resid_hist(mlr.model)
+ols_test_normality(mlr.model)
+
+# Cook's distance - you can change the thresholdfor "influential" using the type option
+# See ?ols_plot_cooksd_bar for what type=3 corresponds to
+ols_plot_cooksd_bar(mlr.model,type=3)
+
+# Influential points (not you can't change the threshold here for influential)
+ols_plot_resid_lev(mlr.model)
+```
+
+We can see that there are significant issues with this particular fit that we would need to explore!
+
+As before, we can add all the model diagnostics to our original table, to allow us to query them more efficiently. 
+
+```{r}
+# Make a new column with the predicted y value
+house$price_predicted <- mlr.model$fitted.values
+
+# Make a new column with the raw residuals
+house$residuals_raw <- mlr.model$residuals
+
+# Make a new column with the standardisd/studentised residuals
+house$residuals_stud <- studres(mlr.model)
+
+# Make a new column with the leverage
+house$x_leverage <- ols_leverage(mlr.model)
+
+# Make a new column with the Cook's distance. OLSRR package
+house$cooks.distance <- cooks.distance(mlr.model)
+
+```
+
+To view the table, type `View(house)` (or whatever the name of your table is) into the console, or click on its name in the environment tab.
+
+## Tutorial 7D Prediction and Confidence Intervals in MLR {#S.Tutorial.7D}
+
+These are again very similar, but we need to add in our other predictors in the new data.
+
+Importantly when you make your "newdata" data frame, it needs to have values for all the predictor columns in your model.
+
+e.g. let's look at the error bars on the average estimated price of a house with these parameter...
+
+
+```{r}
+newdata <- data.frame(House.Age=20, Distance.Station=500, Number.Shops=3)
+# See ?predict.lm for more options
+predict(mlr.model,newdata=newdata,interval="confidence",level=0.95)
+```
+
+So we are 95% sure that the AVERAGE price of a house with these features in the underlying population is between 37.87 and 40.37.  Unlike me, at this point you would also remember to add the units.
+
+To predict the range of prices of a house that was not in our sample, it's again very similar but now we need a prediction interval.
+
+```{r}
+newdata <- data.frame(House.Age=20, Distance.Station=500, Number.Shops=3)
+# See ?predict.lm for more options
+predict(mlr.model,newdata=newdata,interval="prediction",level=0.95)
+```
+
+So we are 95% sure that a house that is 20 years old, 500m from the station near 3 shops is between 20.89 and 57.83.
+
+
+
